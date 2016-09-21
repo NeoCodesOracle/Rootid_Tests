@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>    
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/fe5acd1b57.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">Hello World</header>
+      <section class="contentGroup">
+        <h2 class="accordionTrigger"><span class="pull-left">Frequently Asked Question</span>
+            <span class="fa-stack pull-right" >
+              <i class="fa fa-circle-thin fa-stack-2x"></i>
+              <i class="fa fa-plus fa-stack-1x"></i>
+            </span>
+        </h2>
+        <span class="accordionContent">
+          <div class="accordionContainer">
+            <p>Unfortunately, WAM's 501c3 non-profit status and legal structure prevents the formation of formal chapters outside of our headquarters. WAM is more than happy to help support an informal WAM meet-up group in your area that could participate in our webcast member meetings. If you have some traction and have 10 or more women meeting regularly in your area, WAM would gladly advertise your events via our social networking channels and on our website as well as send out a packet of materials. However, groups cannot use the Women's Audio Mission name or offer training or events under the Women's Audio Mission name without written consent from the Board of Directors of Women's Audio Mission. This is necessary so that WAM can make sure that all of the activities we offer fall under our tax exempt purposes, are in line with our mission statement and allow us to maintain our high standards of education and events. WAM also feels that with the current state of online technology, we are much more able to serve non-local members via our online programming. We hold regular webcast member meetings, free online events, and offer excellent online audio training through <a target="_blank" href="http://www.soundchannel.org/">SoundChannel.org</a>, a series of detailed, animated and narrated educational modules. <a target="_blank" href="http://www.soundchannel.org/">SoundChannel.org</a> can be accessed anywhere and anytime via the internet, allowing us to reach more women globally.</p>
+          </div>
+        </span> 
+      </section>
+      <aside class="aside aside-1">
+        <div class="rect"></div>
+      </aside>
+      <aside class="aside aside-2">
+        <div class="rect"></div>
+      </aside>
+      <footer class="footer"></footer>
+    </div>
+
+  <!-- LET'S PUT ALL OUR JAVASCRIPT AT THE END FOR FASTER PAGE LOADING -->
+  <script>
+    $(document).ready(function () {
+
+      $('.contentGroup').on('click', '.accordionTrigger', function () {
+
+        var triggerDOM = $(this);
+        var accordionDOM = $(this).closest('.contentGroup').find('.accordionContent');
+        var indicatorDOM = triggerDOM.find('.fa');
+
+        if (indicatorDOM.hasClass('fa-plus')) {
+
+          accordionDOM.addClass('accordionVisible');
+          indicatorDOM.removeClass('fa-plus').addClass('fa-minus');
+
+        } else if (indicatorDOM.hasClass('fa-minus')) {
+
+          accordionDOM.removeClass('accordionVisible');
+          indicatorDOM.removeClass('fa-minus').addClass('fa-plus');
+
+        }
+      });
+    });
+  </script>
+  </body>
+</html>

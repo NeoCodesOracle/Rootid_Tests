@@ -1,0 +1,232 @@
+/* 
+ *
+ * resetting 
+ *
+ */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+}
+
+
+/********************************************************************************
+      THIS IS THE BEGINNING OF THE BOX LAYOUT THAT DEFINES THE STRUCTURE
+********************************************************************************/
+
+/* mobile first - make boxes start stacking in order for mobile (below 1024px)*/ 
+
+.wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper > * {
+  flex: 1 100%;
+}
+
+/*** header area ***/
+
+.header {
+  background: #41ad49 none repeat scroll 0 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 32%;
+  color: #ffffff;
+  font-size: 60px;
+  letter-spacing: 1.5px;
+  font-weight: lighter;
+  padding-bottom: 45px;
+  padding-top: 25px;
+  text-align: center;
+}
+
+
+/*** nav area ***/
+
+.navigation {
+  background: #ffffff none repeat scroll 0 0;
+  box-sizing: border-box;
+  min-height: 145px;
+  border-bottom: 2px solid #c2c3c4;
+  font-size: 45px;
+  letter-spacing: 1.5px;
+  font-weight: lighter;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 35px;
+  text-align: left;
+}
+
+
+/*** left column box ***/
+
+.aside-1 {
+  height: 300px;
+  margin-left: 5%;
+  margin-right: 15px;
+}
+
+
+/*** right column box ***/
+
+.aside-2 {
+  height: 300px;
+  margin-left: 5%;
+  height: auto;
+  margin-right: 15px;
+}
+
+
+/*** footer area ***/
+
+.footer {
+  height: 145px;
+  background: #000000;
+  margin-top: 45px;
+}
+
+
+/********************************************************************************
+                END OF THE BOX LAYOUT THAT DEFINES THE STRUCTURE
+********************************************************************************/
+
+
+
+/********************************************************************************
+                THIS IS WHERE THE RESPONSIVE BEHAVIOR GOES
+********************************************************************************/
+
+/* place 2 boxes side-by-side when viewport is above 1024px */ 
+
+@media all and (min-width: 1024px) {
+  .aside {
+    flex: 1 auto;
+  }
+
+  .aside-2 {
+  flex: 1 auto;
+  height: 330px;
+  margin-left: 15px;
+  margin-right: 5%;
+  }
+
+  .footer {
+    margin-top: 0px;
+  }
+
+}
+
+
+/********************************************************************************
+                          END OF RESPONSIVE BEHAVIOR
+********************************************************************************/
+
+/********************************************************************************
+                THIS IS WHERE STYLING FOR DATA CONTENTS GO
+********************************************************************************/
+
+
+#container {
+  position:relative;
+}
+
+.rect {
+  box-sizing: border-box;
+  background-color: #fff200;
+  height: 285px; 
+  position:relative;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 633px; /* keep it from growing above this */
+}
+
+.rect:last-child {
+  margin-bottom: 0px;
+}
+
+.content {
+  font-size: .4em;
+  letter-spacing: 1px;
+}
+
+
+h2 {
+  font-size: 40px;
+  line-height: 75px;
+  border-bottom: 2px solid #eeeeee;
+  padding: 0 0 100px 0;
+}
+
+
+dd {
+  margin-bottom: 10px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+.contentGroup {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+.accordionContent {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  -webkit-transition-property: max-height, opacity;
+  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-duration: .5s;
+  transition-property: max-height, opacity;
+  transition-timing-function: ease-out;
+  transition-duration: .5s;
+}
+
+.accordionVisible {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.accordionContainer {
+  padding: 15px;
+  background-color: rgba(119, 249, 128, 0.9);
+  color: rgb(27, 96, 32, 1);
+  border-radius: 4px;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.accordionContainer p:last-child, .accordionContainer ul:last-child {
+  margin-bottom: 0;
+}
+
+.accordionTrigger {
+  font-weight: lighter;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/********************************************************************************
+                          END OF DATA ELEMENT STYLING
+********************************************************************************/
