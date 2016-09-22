@@ -31,6 +31,7 @@ class RootidTests(unittest.TestCase):
     self.driver.implicitly_wait(10)
     self.driver.maximize_window()
 
+
   def test_jmickela_first_result(self):
     '''Test to ensure target_phrase is first result in Google'''
     try:
@@ -62,6 +63,11 @@ class RootidTests(unittest.TestCase):
       logging.info(elements[0].get_attribute('href'))
       # follow the link of first search result for visual confirmation
       elements[0].click()
+
+
+    def tearDown(self):
+      '''Shuts down the browser upon test completion'''
+        self.driver.quit()
 
 
 if __name__ == "__main__":
