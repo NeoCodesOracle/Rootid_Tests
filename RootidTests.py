@@ -20,14 +20,16 @@ import logging
 logging.basicConfig(filename='log.txt', level=logging.INFO)
 
 class RootidTests(unittest.TestCase):
-  # we need to explicitly declare our target strings as 
-  # a unicode string or else our test will fail
+  # explicitly declare our target strings as a unicode string
   target_phrase = u"jmickela (Jason Mickela) · GitHub"
   target_url_link = u"https://github.com/jmickela"
 
+  # a container for putting results in
+  elements = []
+
   def setUp(self):
     '''Initialize browser, sets wait period and maximizes window'''
-    self.driver = webdriver.Firefox()
+    self.driver = webdriver.Chrome()
     self.driver.implicitly_wait(10)
     self.driver.maximize_window()
 
@@ -36,39 +38,76 @@ class RootidTests(unittest.TestCase):
     '''Test to ensure target_phrase is first result in Google'''
     try:
       driver = self.driver
+
       # point browser to google home page
-      driver.get('http://www.google.com')
-    	# search for the input box
-      elem = driver.find_element_by_name('q')
+      driver.get("http://www.google.com")
+    	
+      # search for the input box
+      elem = driver.find_element_by_name("q")
     	# enter search term into box
-      elem.send_keys('jmickela github')
+      elem.send_keys("jmickela github")
       elem.send_keys(Keys.RETURN)
+      
       # every search result is contained exclusively within an h3 tag
-      # let's find all of them and put them in a list called elements
-      elements = driver.find_elements_by_xpath(
+      self.elements = driver.find_elements_by_xpath(
         "//*[@id='rso']/div/div/div/h3/a")
 
       # this is where we test target_phrase is first result
-      self.assertEqual(self.target_phrase, elements[0].text)
+      self.assertEqual(self.target_phrase, self.elements[0].text)
       # this is where we test the page links to the expected page
       self.assertEqual(
-        self.target_url_link, elements[0].get_attribute('href'))
+        self.target_url_link, self.elements[0].get_attribute("href"))
 
     finally:
       logging.info("TOTAL RESULTS FROM SEARCH")
-      logging.info(len(elements))
+      logging.info(len(self.elements))
       logging.info("PRINTING THE CONTENTS OF THE FIRST ELEMENT")
-      logging.info(elements[0].text)
+      logging.info(self.elements[0].text)
       logging.info("PRINTING THE LINK OF THE FIRST ELEMENT")
-      logging.info(elements[0].get_attribute('href'))
+      logging.info(self.elements[0].get_attribute("href"))
+      logging.info("************ ALL TESTS PASSED ************")
       # follow the link of first search result for visual confirmation
-      elements[0].click()
+      self.elements[0].click()
 
 
-    def tearDown(self):
-      '''Shuts down the browser upon test completion'''
-        self.driver.quit()
+  def test_verify_link(self):
+    '''Test to ensure page links to specific page'''
+
+    target_link = u"http://www.rootid.in/projects/ella-baker-center"
+
+    try:     
+      # point browser to rootid homepage
+      self.driver.get("http://www.rootid.in")
+      # search for the link with the text 'VIEW WORK'
+      elem = self.driver.find_element_by_link_text("VIEW WORK")
+      # click on that link
+      elem.click()
+      
+      # let's look for all elements and put them in a list
+      self.elements[:] = []  # first flush list
+      self.elements = self.driver.find_elements_by_css_selector(
+        "h2.field-content>a")
+
+      # compare the first link to target_link
+      self.assertEqual(target_link, self.elements[0].get_attribute("href"))
+
+    finally:
+      logging.info("\n")
+      logging.info("TOTAL LINKS LINKING TO WORKS")
+      logging.info(len(self.elements))      
+      logging.info("PRINTING ALL LINKS IN LIST")
+      for link in self.elements:
+        logging.info(link.get_attribute("href"))
+      logging.info("************ ALL TESTS PASSED ************")
+      # follow the link of first search result for visual confirmation
+      self.elements[0].click()
+   
+
+  def tearDown(self):
+    '''Shuts down the browser upon test completion'''
+    self.driver.quit()
 
 
 if __name__ == "__main__":
     unittest.main()
+
