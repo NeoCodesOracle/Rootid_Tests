@@ -19,11 +19,11 @@ import logging
 
 logging.basicConfig(filename='log.txt', level=logging.INFO)
 
-class TestExamples(unittest.TestCase):
-
-  # we need to explicitly declare our target string as 
+class RootidTests(unittest.TestCase):
+  # we need to explicitly declare our target strings as 
   # a unicode string or else our test will fail
   target_phrase = u"jmickela (Jason Mickela) · GitHub"
+  target_url_link = u"https://github.com/jmickela"
 
   def setUp(self):
     '''Initialize browser, sets wait period and maximizes window'''
@@ -44,23 +44,25 @@ class TestExamples(unittest.TestCase):
       elem.send_keys(Keys.RETURN)
       # every search result is contained exclusively within an h3 tag
       # let's find all of them and put them in a list called elements
-      elements = driver.find_elements_by_xpath("//*[@id='rso']/div/div/div/h3/a")
+      elements = driver.find_elements_by_xpath(
+        "//*[@id='rso']/div/div/div/h3/a")
 
       # this is where we test target_phrase is first result
       self.assertEqual(self.target_phrase, elements[0].text)
-
-      # now that we have the first element let's follow its link
-      elements[0].click()
-
-      # lastly, let's make sure the link to us to the expected page
+      # this is where we test the page links to the expected page
+      self.assertEqual(
+        self.target_url_link, elements[0].get_attribute('href'))
 
     finally:
       logging.info("TOTAL RESULTS FROM SEARCH")
       logging.info(len(elements))
-      logging.info("WHAT IS THE TYPE OF THE RESULT")
-      logging.info(type(elements[0].text))
       logging.info("PRINTING THE CONTENTS OF THE FIRST ELEMENT")
       logging.info(elements[0].text)
+      logging.info("PRINTING THE LINK OF THE FIRST ELEMENT")
+      logging.info(elements[0].get_attribute('href'))
+      # follow the link of first search result for visual confirmation
+      elements[0].click()
+
 
 if __name__ == "__main__":
     unittest.main()
