@@ -132,7 +132,7 @@ class RootidTests(unittest.TestCase):
 			logging.info("Listing all error messages")
 			for index in range(len(self.elements)):
 				logging.info(self.elements[index].get_attribute('innerHTML'))
-
+			logging.info("************ ALL TESTS PASSED ************")
 
 	def tearDown(self):
 		"""
