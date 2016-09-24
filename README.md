@@ -9,5 +9,5 @@ Ubuntu 16.04
 Python 2.7.12
 Selenium 2.53.6
 
-##### [HTML & CSS TEST](https://github.com/NeoCodesOracle/Rootid_Tests/html-css/html-css.md)
-##### [PYTHON-SELENIUM TEST](https://github.com/NeoCodesOracle/Rootid_Tests/selenium-python/selenium-python.md)
+##### [HTML & CSS TEST](https://github.com/NeoCodesOracle/Rootid_Tests/blob/master/html-css/html-css.md)
+##### [PYTHON-SELENIUM TEST](https://github.com/NeoCodesOracle/Rootid_Tests/blob/master/selenium-python/selenium-python.md)

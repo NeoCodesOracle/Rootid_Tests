@@ -5,4 +5,4 @@ click on the plus symbol or the Frequently Asked Question text some text should
 appear below the "question". Also, on mobile (below 1024px) the two yellow boxes
 should stack intead of being side by side.
 
-![Wirefram Image](https://github.com/NeoCodesOracle/Rootid_Tests/images/Rootid_Test.png)
+![Wirefram Image](https://github.com/NeoCodesOracle/Rootid_Tests/blob/master/html-css/images/Rootid_Test.png)
